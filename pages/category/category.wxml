@@ -1,0 +1,43 @@
+<!-- pages/category/category.wxml - 分类页 -->
+<view class="page">
+  <scroll-view class="sidebar" scroll-y>
+    <view
+      wx:for="{{categories}}"
+      wx:key="id"
+      class="sidebar-item {{activeId === item.id ? 'sidebar-item-active' : ''}}"
+      data-id="{{item.id}}"
+      bindtap="onSelectCategory"
+    >
+      <text>{{item.icon}}</text>
+      <text class="sidebar-name">{{item.name}}</text>
+    </view>
+  </scroll-view>
+
+  <scroll-view class="content" scroll-y>
+    <view class="content-title">
+      <text>{{categories[activeId - 1].name}}</text>
+      <text class="content-count">共{{productList.length}}件商品</text>
+    </view>
+    <view
+      wx:for="{{productList}}"
+      wx:key="id"
+      class="product-item"
+      data-id="{{item.id}}"
+      bindtap="goDetail"
+    >
+      <view class="product-img" style="background: {{item.color}};">{{item.emoji}}</view>
+      <view class="product-info">
+        <view class="product-name">{{item.name}}</view>
+        <view class="product-desc">{{item.desc}}</view>
+        <view class="product-bottom">
+          <text class="price"><text class="price-symbol">¥</text><text class="price-num">{{item.price}}</text></text>
+          <text class="sales">已售{{item.sales}}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{productList.length === 0}}" class="empty">
+      <text class="empty-icon">📦</text>
+      <text>该分类暂无商品</text>
+    </view>
+  </scroll-view>
+</view>

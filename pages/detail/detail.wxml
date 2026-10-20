@@ -1,0 +1,48 @@
+<!-- pages/detail/detail.wxml - 商品详情 -->
+<view class="page" wx:if="{{product}}">
+
+  <!-- 商品图 -->
+  <view class="hero" style="background: {{product.color}};">
+    <text class="hero-emoji">{{product.emoji}}</text>
+    <view class="hero-tags">
+      <text wx:for="{{product.tags}}" wx:key="*this" class="tag tag-white">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 价格与名称 -->
+  <view class="card info-card">
+    <view class="price-row">
+      <text class="price"><text class="price-symbol">¥</text><text class="price-num">{{product.price}}</text></text>
+      <text class="price-original">¥{{product.originalPrice}}</text>
+      <text class="sales">已售{{product.sales}}件</text>
+    </view>
+    <view class="name">{{product.name}}</view>
+    <view class="sub">规格：{{product.unit}} · 库存{{product.stock}}</view>
+  </view>
+
+  <!-- 描述 -->
+  <view class="card desc-card">
+    <view class="desc-title">商品介绍</view>
+    <view class="desc-text">{{product.desc}}</view>
+    <view class="desc-meta">
+      <text>分类：{{product.categoryName}}</text>
+      <text>产地：本地直供</text>
+    </view>
+  </view>
+
+  <!-- 已加入购物车提示 -->
+  <view wx:if="{{inCartCount > 0}}" class="cart-tip" bindtap="goCart">
+    <text>🛒 购物车中已有 {{inCartCount}} 件该商品，点击去结算 ›</text>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="action-bar">
+    <view class="stepper">
+      <view class="stepper-btn {{count <= 1 ? 'stepper-disabled' : ''}}" bindtap="decrease">−</view>
+      <view class="stepper-num">{{count}}</view>
+      <view class="stepper-btn" bindtap="increase">＋</view>
+    </view>
+    <view class="action-add" bindtap="addToCart">加入购物车</view>
+    <view class="action-buy" bindtap="buyNow">立即购买</view>
+  </view>
+</view>
