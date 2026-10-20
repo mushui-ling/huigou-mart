@@ -1,0 +1,129 @@
+<!-- pages/index/index.wxml - 首页 -->
+<view class="page">
+
+  <!-- 顶部搜索栏 -->
+  <view class="search-bar">
+    <view class="search-box">
+      <text class="search-icon">🔍</text>
+      <input
+        class="search-input"
+        placeholder="搜索商品，如：牛奶、薯片"
+        confirm-type="search"
+        value="{{keyword}}"
+        bindinput="onSearchInput"
+        bindconfirm="onSearchConfirm"
+      />
+      <text wx:if="{{keyword}}" class="search-clear" bindtap="clearSearch">✕</text>
+    </view>
+    <view class="ai-entry" bindtap="goAssistant">
+      <text class="ai-icon">🤖</text>
+      <text>AI导购</text>
+    </view>
+  </view>
+
+  <!-- 搜索结果 -->
+  <block wx:if="{{showSearchResult}}">
+    <view class="result-header">
+      <text>“{{keyword}}” 的搜索结果（{{searchResult.length}}）</text>
+      <text class="result-back" bindtap="clearSearch">返回推荐</text>
+    </view>
+    <view class="product-grid">
+      <view
+        wx:for="{{searchResult}}"
+        wx:key="id"
+        class="product-card"
+        data-id="{{item.id}}"
+        bindtap="goDetail"
+      >
+        <view class="product-img" style="background: {{item.color}};">{{item.emoji}}</view>
+        <view class="product-name">{{item.name}}</view>
+        <view class="product-price-row">
+          <text class="price"><text class="price-symbol">¥</text><text class="price-num">{{item.price}}</text></text>
+          <text class="product-unit">/{{item.unit}}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{searchResult.length === 0}}" class="empty">
+      <text class="empty-icon">🛒</text>
+      <text>没有找到相关商品，换个关键词试试～</text>
+    </view>
+  </block>
+
+  <!-- 默认首页内容 -->
+  <block wx:else>
+
+    <!-- 轮播 -->
+    <swiper class="banner" indicator-dots autoplay circular interval="3500" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#FFFFFF">
+      <swiper-item wx:for="{{banners}}" wx:key="id">
+        <view class="banner-item" style="background: {{item.color}};">
+          <view class="banner-title">{{item.title}}</view>
+          <view class="banner-sub">{{item.subtitle}}</view>
+        </view>
+      </swiper-item>
+    </swiper>
+
+    <!-- 分类导航 -->
+    <view class="category-nav">
+      <view
+        wx:for="{{categories}}"
+        wx:key="id"
+        class="category-item"
+        data-id="{{item.id}}"
+        bindtap="goCategory"
+      >
+        <view class="category-icon">{{item.icon}}</view>
+        <text class="category-name">{{item.name}}</text>
+      </view>
+    </view>
+
+    <!-- 热卖榜 -->
+    <view class="section">
+      <view class="section-title">
+        <text class="section-title-text">🔥 热卖榜</text>
+        <text class="section-more" bindtap="goCategory">查看全部 ›</text>
+      </view>
+      <view class="product-grid">
+        <view
+          wx:for="{{hotList}}"
+          wx:key="id"
+          class="product-card"
+          data-id="{{item.id}}"
+          bindtap="goDetail"
+        >
+          <view class="product-img" style="background: {{item.color}};">{{item.emoji}}</view>
+          <view class="product-name">{{item.name}}</view>
+          <view class="product-tags">
+            <text wx:for="{{item.tags}}" wx:key="*this" class="tag {{item === '热卖' ? 'tag-hot' : ''}}">{{item}}</text>
+          </view>
+          <view class="product-price-row">
+            <text class="price"><text class="price-symbol">¥</text><text class="price-num">{{item.price}}</text></text>
+            <text class="product-unit">/{{item.unit}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 新品推荐 -->
+    <view class="section">
+      <view class="section-title">
+        <text class="section-title-text">✨ 新品推荐</text>
+      </view>
+      <scroll-view class="new-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+        <view class="new-list">
+          <view
+            wx:for="{{newList}}"
+            wx:key="id"
+            class="new-card"
+            data-id="{{item.id}}"
+            bindtap="goDetail"
+          >
+            <view class="new-img" style="background: {{item.color}};">{{item.emoji}}</view>
+            <view class="new-name">{{item.name}}</view>
+            <view class="price"><text class="price-symbol">¥</text><text class="price-num">{{item.price}}</text></view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+  </block>
+</view>
