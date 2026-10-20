@@ -1,0 +1,16 @@
+# 依赖与构建产物
+node_modules/
+miniprogram_npm/
+dist/
+build/
+
+# 微信开发者工具本地配置
+project.private.config.json
+.DS_Store
+
+# 日志
+*.log
+
+# 系统文件
+Thumbs.db
+Desktop.ini
