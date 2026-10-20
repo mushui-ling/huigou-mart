@@ -1,0 +1,49 @@
+<!-- pages/orders/orders.wxml - 订单列表 -->
+<view class="page">
+
+  <!-- 状态标签 -->
+  <view class="tabs">
+    <view
+      wx:for="{{tabs}}"
+      wx:key="key"
+      class="tab {{activeTab === item.key ? 'tab-active' : ''}}"
+      data-key="{{item.key}}"
+      bindtap="switchTab"
+    >{{item.label}}</view>
+  </view>
+
+  <!-- 订单列表 -->
+  <view wx:if="{{orderList.length > 0}}" class="order-list">
+    <view wx:for="{{orderList}}" wx:key="id" class="order-card">
+      <view class="order-head">
+        <text class="order-no">{{item.no}}</text>
+        <text class="order-status status-{{item.status === '待付款' ? 'pay' : (item.status === '待收货' ? 'ship' : 'done')}}">{{item.status}}</text>
+      </view>
+      <view class="order-body">
+        <view wx:for="{{item.items}}" wx:for-item="sub" wx:key="productId" class="order-line">
+          <view class="line-img" style="background: {{sub.color}};">{{sub.emoji}}</view>
+          <view class="line-info">
+            <view class="line-name">{{sub.name}}</view>
+            <view class="line-price">¥{{sub.price}} × {{sub.count}}</view>
+          </view>
+          <view class="line-total">¥{{sub.price * sub.count}}</view>
+        </view>
+      </view>
+      <view class="order-addr">📍 {{item.address.name}} {{item.address.phone}} · {{item.address.detail}}</view>
+      <view class="order-foot">
+        <text class="order-time">{{item.createTime}}</text>
+        <text class="order-amount">实付 <text class="price">¥{{item.total}}</text></text>
+      </view>
+      <view class="order-actions" wx:if="{{item.status === '待付款' || item.status === '待收货'}}">
+        <view wx:if="{{item.status === '待付款'}}" class="btn-mini btn-mini-primary" data-id="{{item.id}}" bindtap="payOrder">去付款</view>
+        <view wx:if="{{item.status === '待收货'}}" class="btn-mini btn-mini-primary" data-id="{{item.id}}" bindtap="confirmReceive">确认收货</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view wx:else class="empty">
+    <text class="empty-icon">📋</text>
+    <text>暂无相关订单</text>
+  </view>
+</view>

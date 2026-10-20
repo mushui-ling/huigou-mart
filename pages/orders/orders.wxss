@@ -1,0 +1,148 @@
+/* pages/orders/orders.wxss - 订单列表样式 */
+.tabs {
+  display: flex;
+  background: #FFFFFF;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 26rpx 0;
+  font-size: 28rpx;
+  color: #666666;
+  border-bottom: 4rpx solid transparent;
+}
+
+.tab-active {
+  color: #FF6A3D;
+  font-weight: 700;
+  border-bottom-color: #FF6A3D;
+}
+
+.order-list {
+  padding: 20rpx;
+}
+
+.order-card {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+}
+
+.order-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16rpx;
+  border-bottom: 1rpx solid #F2F2F2;
+}
+
+.order-no {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.order-status {
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+.status-pay {
+  color: #FF4D2E;
+}
+
+.status-ship {
+  color: #FF8A00;
+}
+
+.status-done {
+  color: #999999;
+}
+
+.order-line {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+}
+
+.line-img {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42rpx;
+  flex-shrink: 0;
+}
+
+.line-info {
+  flex: 1;
+  margin-left: 16rpx;
+}
+
+.line-name {
+  font-size: 26rpx;
+  margin-bottom: 6rpx;
+}
+
+.line-price {
+  font-size: 22rpx;
+  color: #999999;
+}
+
+.line-total {
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+.order-addr {
+  font-size: 22rpx;
+  color: #777777;
+  background: #F8F8F8;
+  border-radius: 10rpx;
+  padding: 14rpx 16rpx;
+  margin-top: 8rpx;
+}
+
+.order-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16rpx;
+}
+
+.order-time {
+  font-size: 22rpx;
+  color: #B0B0B0;
+}
+
+.order-amount {
+  font-size: 24rpx;
+  color: #555555;
+}
+
+.order-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16rpx;
+}
+
+.btn-mini {
+  padding: 0 36rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  border-radius: 32rpx;
+  font-size: 26rpx;
+  text-align: center;
+}
+
+.btn-mini-primary {
+  background: linear-gradient(135deg, #FF8A4C, #FF6A3D);
+  color: #FFFFFF;
+  font-weight: 600;
+}

@@ -1,0 +1,58 @@
+<!-- pages/order/order.wxml - 结算下单 -->
+<view class="page">
+
+  <!-- 收货地址 -->
+  <view class="card address-card">
+    <view class="card-title">收货地址</view>
+    <view class="form-row">
+      <text class="form-label">收货人</text>
+      <input class="form-input" placeholder="请输入姓名" value="{{address.name}}" data-field="name" bindinput="onInput" />
+    </view>
+    <view class="form-row">
+      <text class="form-label">手机号</text>
+      <input class="form-input" type="number" maxlength="11" placeholder="请输入11位手机号" value="{{address.phone}}" data-field="phone" bindinput="onInput" />
+    </view>
+    <view class="form-row">
+      <text class="form-label">收货地址</text>
+      <input class="form-input" placeholder="小区/街道/门牌号" value="{{address.detail}}" data-field="detail" bindinput="onInput" />
+    </view>
+  </view>
+
+  <!-- 商品清单 -->
+  <view class="card items-card">
+    <view class="card-title">商品清单</view>
+    <view wx:for="{{items}}" wx:key="productId" class="order-item">
+      <view class="order-img" style="background: {{item.color}};">{{item.emoji}}</view>
+      <view class="order-info">
+        <view class="order-name">{{item.name}}</view>
+        <view class="order-price">¥{{item.price}} × {{item.count}}</view>
+      </view>
+      <view class="order-subtotal">¥{{item.price * item.count}}</view>
+    </view>
+  </view>
+
+  <!-- 金额合计 -->
+  <view class="card total-card">
+    <view class="total-row">
+      <text>商品件数</text>
+      <text>{{totalCount}}件</text>
+    </view>
+    <view class="total-row">
+      <text>配送方式</text>
+      <text>满39元免运费（模拟）</text>
+    </view>
+    <view class="total-row total-final">
+      <text>应付金额</text>
+      <text class="price"><text class="price-symbol">¥</text><text class="price-num">{{totalPrice}}</text></text>
+    </view>
+  </view>
+
+  <!-- 提交 -->
+  <view class="submit-bar">
+    <view class="submit-total">
+      <text>合计：</text>
+      <text class="price"><text class="price-symbol">¥</text><text class="price-num">{{totalPrice}}</text></text>
+    </view>
+    <view class="submit-btn {{paying ? 'btn-disabled' : ''}}" bindtap="submitOrder">提交订单</view>
+  </view>
+</view>
