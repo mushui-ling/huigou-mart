@@ -1,0 +1,187 @@
+/* pages/assistant/assistant.wxss - AI导购助手样式 */
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #F6F6F6;
+}
+
+.chat {
+  flex: 1;
+  padding: 24rpx;
+  box-sizing: border-box;
+  height: 0;
+}
+
+.msg {
+  display: flex;
+  margin-bottom: 28rpx;
+}
+
+.msg-user {
+  justify-content: flex-end;
+}
+
+.msg-assistant {
+  justify-content: flex-start;
+}
+
+.avatar {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  background: #FFF3EC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.bubble {
+  max-width: 76%;
+  border-radius: 20rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  line-height: 1.6;
+  word-break: break-all;
+}
+
+.bubble-user {
+  background: linear-gradient(135deg, #FF8A4C, #FF6A3D);
+  color: #FFFFFF;
+  border-top-right-radius: 4rpx;
+}
+
+.bubble-assistant {
+  background: #FFFFFF;
+  color: #333333;
+  border-top-left-radius: 4rpx;
+}
+
+.bubble-text {
+  display: block;
+}
+
+.thinking {
+  color: #999999;
+}
+
+/* 推荐商品 */
+.recommend-list {
+  margin-top: 20rpx;
+  border-top: 1rpx solid #F2F2F2;
+  padding-top: 16rpx;
+}
+
+.recommend-card {
+  display: flex;
+  align-items: center;
+  padding: 12rpx 0;
+}
+
+.recommend-img {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42rpx;
+  flex-shrink: 0;
+}
+
+.recommend-info {
+  flex: 1;
+  margin-left: 16rpx;
+  min-width: 0;
+}
+
+.recommend-name {
+  font-size: 26rpx;
+  font-weight: 600;
+  margin-bottom: 6rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.recommend-price {
+  display: flex;
+  align-items: baseline;
+}
+
+.recommend-unit {
+  font-size: 20rpx;
+  color: #B0B0B0;
+  margin-left: 4rpx;
+}
+
+.recommend-add {
+  width: 52rpx;
+  height: 52rpx;
+  border-radius: 50%;
+  background: #FF6A3D;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  flex-shrink: 0;
+}
+
+/* 快捷问题 */
+.quick {
+  white-space: nowrap;
+  padding: 0 20rpx 16rpx;
+}
+
+.quick-list {
+  display: inline-flex;
+}
+
+.quick-item {
+  display: inline-block;
+  background: #FFFFFF;
+  border: 1rpx solid #FFD8C6;
+  color: #FF6A3D;
+  font-size: 24rpx;
+  border-radius: 30rpx;
+  padding: 10rpx 26rpx;
+  margin-right: 16rpx;
+}
+
+/* 输入区 */
+.input-bar {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 20rpx calc(16rpx + env(safe-area-inset-bottom));
+  background: #FFFFFF;
+  box-shadow: 0 -4rpx 16rpx rgba(0, 0, 0, 0.04);
+}
+
+.input {
+  flex: 1;
+  background: #F2F2F2;
+  border-radius: 40rpx;
+  height: 72rpx;
+  padding: 0 30rpx;
+  font-size: 26rpx;
+}
+
+.send-btn {
+  margin-left: 16rpx;
+  background: linear-gradient(135deg, #FF8A4C, #FF6A3D);
+  color: #FFFFFF;
+  border-radius: 40rpx;
+  padding: 0 40rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.send-disabled {
+  background: #D8D8D8;
+}

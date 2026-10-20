@@ -1,0 +1,58 @@
+<!-- pages/assistant/assistant.wxml - AI 导购助手 -->
+<view class="page">
+
+  <!-- 对话区 -->
+  <scroll-view class="chat" scroll-y scroll-into-view="{{scrollInto}}">
+    <view
+      wx:for="{{messages}}"
+      wx:key="index"
+      id="msg-{{index}}"
+      class="msg {{item.role === 'user' ? 'msg-user' : 'msg-assistant'}}"
+    >
+      <view wx:if="{{item.role === 'assistant'}}" class="avatar">🤖</view>
+      <view class="bubble {{item.role === 'user' ? 'bubble-user' : 'bubble-assistant'}}">
+        <text class="bubble-text" user-select>{{item.content}}</text>
+        <!-- 推荐商品卡片 -->
+        <view wx:if="{{item.products.length > 0}}" class="recommend-list">
+          <view wx:for="{{item.products}}" wx:for-item="p" wx:for-index="pi" wx:key="id" class="recommend-card">
+            <view class="recommend-img" style="background: {{p.color}};" data-id="{{p.id}}" data-mid="{{index}}" data-pid="{{pi}}" bindtap="goDetail">{{p.emoji}}</view>
+            <view class="recommend-info">
+              <view class="recommend-name" data-id="{{p.id}}" data-mid="{{index}}" data-pid="{{pi}}" bindtap="goDetail">{{p.name}}</view>
+              <view class="recommend-price">
+                <text class="price"><text class="price-symbol">¥</text><text class="price-num">{{p.price}}</text></text>
+                <text class="recommend-unit">/{{p.unit}}</text>
+              </view>
+            </view>
+            <view class="recommend-add" data-mid="{{index}}" data-pid="{{pi}}" catchtap="addToCart">＋</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 思考中 -->
+    <view wx:if="{{thinking}}" class="msg msg-assistant">
+      <view class="avatar">🤖</view>
+      <view class="bubble bubble-assistant thinking">正在为你挑选好物…</view>
+    </view>
+  </scroll-view>
+
+  <!-- 快捷问题 -->
+  <scroll-view class="quick" scroll-x enhanced show-scrollbar="{{false}}" wx:if="{{!thinking}}">
+    <view class="quick-list">
+      <view wx:for="{{quickQuestions}}" wx:key="*this" class="quick-item" data-text="{{item}}" bindtap="onQuickTap">{{item}}</view>
+    </view>
+  </scroll-view>
+
+  <!-- 输入区 -->
+  <view class="input-bar">
+    <input
+      class="input"
+      placeholder="问问AI导购，如：50元以内零食推荐"
+      confirm-type="send"
+      value="{{inputValue}}"
+      bindinput="onInput"
+      bindconfirm="onSend"
+    />
+    <view class="send-btn {{!inputValue || thinking ? 'send-disabled' : ''}}" bindtap="onSend">发送</view>
+  </view>
+</view>
