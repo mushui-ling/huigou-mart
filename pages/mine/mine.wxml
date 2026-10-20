@@ -1,0 +1,91 @@
+<!-- pages/mine/mine.wxml - 我的 -->
+<view class="page">
+
+  <!-- 用户信息 -->
+  <view class="user-card">
+    <image wx:if="{{user && user.avatarUrl}}" class="avatar" src="{{user.avatarUrl}}" mode="aspectFill" />
+    <view wx:else class="avatar avatar-default">🙂</view>
+    <view class="user-info">
+      <view class="nickname">{{user ? user.nickName : '未登录'}}</view>
+      <view class="login-tip" bindtap="login">{{user ? '点击重新授权' : '点击登录'}}</view>
+    </view>
+    <view class="vip-badge">惠购会员</view>
+  </view>
+
+  <!-- 订单入口 -->
+  <view class="card menu-card">
+    <view class="menu-title">我的订单</view>
+    <view class="order-menu">
+      <view class="order-menu-item" data-status="all" bindtap="goOrders">
+        <text class="menu-icon">📋</text>
+        <text>全部订单</text>
+      </view>
+      <view class="order-menu-item" data-status="pay" bindtap="goOrders">
+        <text class="menu-icon">💰</text>
+        <text>待付款</text>
+      </view>
+      <view class="order-menu-item" data-status="ship" bindtap="goOrders">
+        <text class="menu-icon">🚚</text>
+        <text>待收货</text>
+      </view>
+      <view class="order-menu-item" data-status="done" bindtap="goOrders">
+        <text class="menu-icon">✅</text>
+        <text>已完成</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- AI导购入口 -->
+  <view class="card menu-card">
+    <view class="menu-title">AI 服务</view>
+    <view class="menu-row" bindtap="goAssistant">
+      <text>🤖 AI导购助手</text>
+      <text class="arrow">›</text>
+    </view>
+  </view>
+
+  <!-- AI 配置 -->
+  <view class="card menu-card">
+    <view class="menu-title">AI 导购引擎配置</view>
+    <view class="form-row">
+      <text class="form-label">引擎模式</text>
+      <radio-group class="radio-group" bindchange="onModeChange">
+        <label class="radio-item">
+          <radio value="mock" checked="{{aiMode === 'mock'}}" color="#FF6A3D" />
+          <text>本地智能引擎（默认，免配置）</text>
+        </label>
+        <label class="radio-item">
+          <radio value="api" checked="{{aiMode === 'api'}}" color="#FF6A3D" />
+          <text>真实大模型 API</text>
+        </label>
+      </radio-group>
+    </view>
+
+    <block wx:if="{{aiMode === 'api'}}">
+      <view class="form-row">
+        <text class="form-label">API Key</text>
+        <input class="form-input" placeholder="Bearer Token / API Key" value="{{apiKey}}" data-field="apiKey" bindinput="onApiInput" />
+      </view>
+      <view class="form-row">
+        <text class="form-label">接口地址</text>
+        <input class="form-input" placeholder="OpenAI兼容地址，如 https://…/chat/completions" value="{{apiEndpoint}}" data-field="apiEndpoint" bindinput="onApiInput" />
+      </view>
+      <view class="form-row">
+        <text class="form-label">模型名</text>
+        <input class="form-input" placeholder="如 ep-xxx / deepseek-chat 等" value="{{apiModel}}" data-field="apiModel" bindinput="onApiInput" />
+      </view>
+      <view class="api-tip">支持火山方舟、通义千问、DeepSeek 等 OpenAI 兼容接口；调用失败会自动回退到本地引擎。</view>
+      <view class="btn-row">
+        <view class="btn-mini btn-mini-primary" bindtap="saveAiConfig">保存配置</view>
+        <view class="btn-mini btn-mini-plain" bindtap="resetAiConfig">重置</view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 关于 -->
+  <view class="card menu-card">
+    <view class="menu-title">关于</view>
+    <view class="about-text">惠购百货 · 微信小程序购物实践项目（人工智能专业 · 校企合作课程）</view>
+    <view class="about-text">版本 V1.0.0</view>
+  </view>
+</view>

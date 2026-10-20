@@ -1,0 +1,173 @@
+/* pages/mine/mine.wxss - 我的页样式 */
+.page {
+  padding-bottom: 40rpx;
+}
+
+.user-card {
+  background: linear-gradient(135deg, #FF8A4C, #FF6A3D);
+  display: flex;
+  align-items: center;
+  padding: 60rpx 40rpx;
+  color: #FFFFFF;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  border: 4rpx solid rgba(255, 255, 255, 0.6);
+  flex-shrink: 0;
+}
+
+.avatar-default {
+  background: rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56rpx;
+}
+
+.user-info {
+  flex: 1;
+  margin-left: 24rpx;
+}
+
+.nickname {
+  font-size: 36rpx;
+  font-weight: 700;
+}
+
+.login-tip {
+  font-size: 24rpx;
+  opacity: 0.85;
+  margin-top: 8rpx;
+}
+
+.vip-badge {
+  font-size: 22rpx;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1rpx solid rgba(255, 255, 255, 0.5);
+  border-radius: 26rpx;
+  padding: 6rpx 20rpx;
+}
+
+.card {
+  margin: 20rpx;
+}
+
+.menu-card {
+  padding: 24rpx;
+}
+
+.menu-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  margin-bottom: 20rpx;
+  color: #444444;
+}
+
+.order-menu {
+  display: flex;
+}
+
+.order-menu-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 24rpx;
+  color: #555555;
+}
+
+.menu-icon {
+  font-size: 44rpx;
+  margin-bottom: 10rpx;
+}
+
+.menu-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  font-size: 28rpx;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+
+.menu-row:last-child {
+  border-bottom: none;
+}
+
+.arrow {
+  color: #C0C0C0;
+  font-size: 32rpx;
+}
+
+.form-row {
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+
+.form-label {
+  font-size: 26rpx;
+  color: #555555;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  margin-bottom: 10rpx;
+}
+
+.form-input {
+  font-size: 26rpx;
+  background: #F8F8F8;
+  border-radius: 10rpx;
+  padding: 14rpx 20rpx;
+}
+
+.api-tip {
+  font-size: 22rpx;
+  color: #999999;
+  line-height: 1.6;
+  padding: 14rpx 0;
+}
+
+.btn-row {
+  display: flex;
+  margin-top: 10rpx;
+}
+
+.btn-mini {
+  padding: 0 40rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  border-radius: 32rpx;
+  font-size: 26rpx;
+  text-align: center;
+  margin-right: 20rpx;
+}
+
+.btn-mini-primary {
+  background: linear-gradient(135deg, #FF8A4C, #FF6A3D);
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.btn-mini-plain {
+  background: #F2F2F2;
+  color: #666666;
+}
+
+.about-text {
+  font-size: 24rpx;
+  color: #999999;
+  line-height: 1.6;
+}
