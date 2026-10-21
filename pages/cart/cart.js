@@ -1,5 +1,6 @@
 // pages/cart/cart.js - 购物车页
 const { getCart, saveCart } = require('../../utils/storage');
+const { getProductById } = require('../../utils/mock-data');
 
 Page({
   data: {
@@ -62,6 +63,12 @@ Page({
   increase(e) {
     const index = e.currentTarget.dataset.index;
     const cart = this.data.cart;
+    const item = cart[index];
+    const p = getProductById(item.productId);
+    if (p && item.count >= p.stock) {
+      wx.showToast({ title: '已达库存上限', icon: 'none' });
+      return;
+    }
     cart[index].count += 1;
     saveCart(cart);
     this.refresh();

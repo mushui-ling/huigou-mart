@@ -68,6 +68,16 @@ Page({
     }
     if (this.data.paying) return;
 
+    // 结算前库存二次校验：防止多端操作或数据过期导致超卖
+    for (let i = 0; i < this.data.items.length; i++) {
+      const it = this.data.items[i];
+      const p = getProductById(it.productId);
+      if (!p || it.count > p.stock) {
+        wx.showToast({ title: '「' + it.name + '」库存不足，请调整数量', icon: 'none' });
+        return;
+      }
+    }
+
     this.setData({ paying: true });
 
     // 生成订单
